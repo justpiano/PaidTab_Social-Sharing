@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Button, Dialog, Typography } from '@material-ui/core';
+import { Box, Button, Dialog, Typography, IconButton } from '@material-ui/core';
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -16,6 +16,9 @@ import {
   WhatsappShareButton,
   WhatsappIcon,
 } from "react-share";
+import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
+import { copyToClipboard } from '../utils/function';
+
 
 const ShareProduct = ({ productURL }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -63,7 +66,12 @@ const ShareProduct = ({ productURL }) => {
               <LineIcon style={{ borderRadius: '100px', width: '40px', height: '40px' }} />
             </LineShareButton>
           </Box>
-          <Typography variant='h6'>{productURL}</Typography>
+          <Box style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: "center", gap: '8px' }}>
+            <Typography variant='h6'>{productURL}</Typography>
+            <IconButton onClick={() => copyToClipboard(productURL)}>
+              <FileCopyOutlinedIcon />
+            </IconButton>
+          </Box>
         </Box>
       </Dialog>
     </Box>
