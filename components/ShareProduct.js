@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Button, Dialog, Typography, IconButton } from '@material-ui/core';
+import { Box, Button, Dialog, Typography, IconButton, Tooltip } from '@material-ui/core';
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -68,9 +68,11 @@ const ShareProduct = ({ productURL }) => {
           </Box>
           <Box style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: "center", gap: '8px' }}>
             <Typography variant='h6'>{productURL}</Typography>
-            <IconButton onClick={() => copyToClipboard(productURL)}>
-              <FileCopyOutlinedIcon />
-            </IconButton>
+            <Tooltip title="Copy to clipboard">
+              <IconButton onClick={() => copyToClipboard(productURL)}>
+                <FileCopyOutlinedIcon />
+              </IconButton>
+            </Tooltip>
           </Box>
         </Box>
       </Dialog>
