@@ -1,42 +1,34 @@
-import React, { PureComponent } from 'react';
-import { Button, Dialog, DialogTitle } from '@material-ui/core';
+import React, { useState } from 'react'
+import { Box, Button, Dialog, Typography } from '@material-ui/core';
 
-class ShareProduct extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isDialogOpen: false
-    };
-  }
+const ShareProduct = ({ productURL }) => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  handleOpenDialog = () => {
-    this.setState({ isDialogOpen: true });
+  const handleOpenDialog = () => {
+    setIsDialogOpen(true);
   };
 
-  handleCloseDialog = () => {
-    this.setState({ isDialogOpen: false });
+  const handleCloseDialog = () => {
+    setIsDialogOpen(false);
   };
 
-  render() {
-    const { productURL } = this.props;
-    const { isDialogOpen } = this.state;
-
-    return (
-      <div>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={this.handleOpenDialog}
-        >
-          Share Product
-        </Button>
-        <Dialog open={isDialogOpen} onClose={this.handleCloseDialog}>
-          <DialogTitle>Share this Product</DialogTitle>
-          {/*  <h1>{productURL}</h1> */}
-        </Dialog>
-      </div>
-    );
-  }
+  return (
+    <Box>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => handleOpenDialog()}
+      >
+        Share Product
+      </Button>
+      <Dialog open={isDialogOpen} onClose={() => handleCloseDialog()} >
+        <Box style={{ maxWidth: '500px', width: '500px', padding: '20px', minHeight: '300px', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <Typography variant='h5'>{'Share this Product'}</Typography>
+          <Typography variant='h6'>{productURL}</Typography>
+        </Box>
+      </Dialog>
+    </Box>
+  )
 }
 
-export default ShareProduct;
+export default ShareProduct
