@@ -1,6 +1,6 @@
-// import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 export const copyToClipboard = (text) => {
   navigator.clipboard.writeText(text)
-  // toast("Successfully copied!");
+  toast.success("Copied to Clipboard!");
 };
